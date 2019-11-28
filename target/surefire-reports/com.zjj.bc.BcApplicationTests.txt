@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.zjj.bc.BcApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.846 s <<< FAILURE! - in com.zjj.bc.BcApplicationTests
+contextLoads  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: file [C:\Users\0\eclipse-workspace\BC\target\classes\com\zjj\bc\config\netty\NettyServerAutoConfiguration.class]; nested exception is java.lang.IllegalStateException: Error processing condition on com.zjj.bc.config.netty.NettyServerAutoConfiguration
+Caused by: java.lang.IllegalStateException: Error processing condition on com.zjj.bc.config.netty.NettyServerAutoConfiguration
+Caused by: java.lang.IllegalStateException: The name or value attribute of @ConditionalOnProperty must be specified
+
