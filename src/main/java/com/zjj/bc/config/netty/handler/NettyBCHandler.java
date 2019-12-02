@@ -1,13 +1,14 @@
 package com.zjj.bc.config.netty.handler;
 
-import com.zjj.bc.config.netty.protocol.entity.Signal;
+import java.util.ArrayList;
+import java.util.List;
 
-import io.netty.channel.ChannelHandlerAdapter;
+import com.zjj.bc.config.netty.protocol.entity.Node;
+import com.zjj.bc.config.netty.protocol.entity.Signal;
+import com.zjj.bc.config.netty.protocol.enums.SignalTypeEnum;
+
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http2.Http2HeadersDecoder;
-import io.netty.handler.codec.http2.Http2Settings;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
+import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -19,13 +20,30 @@ import lombok.extern.slf4j.Slf4j;
  *@Version 1.0
  */
 @Slf4j
-public class NettyBCHandler extends ChannelHandlerAdapter {
+public class NettyBCHandler extends SimpleChannelInboundHandler<Signal> {
 	
+	public static List<Node> nodes=new ArrayList<>();
 	
 	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		Signal signal=(Signal) msg;
-		super.channelRead(ctx, msg);
+	protected void channelRead0(ChannelHandlerContext ctx, Signal msg) throws Exception {
+		
+		Integer type=msg.getType();
+		if(SignalTypeEnum.ERROR.getValue().equals(type)) {
+			errorHandler(msg);
+		}else if(SignalTypeEnum.QUERY.getValue().equals(type)) {
+			queryHandler(msg);
+		}else if(SignalTypeEnum.FIND_NODE.getValue().equals(type)) {
+			findNodeHandler(msg);
+		}else if(SignalTypeEnum.REPLY.getValue().equals(type)) {
+			replyHandler(msg);
+		}else if(SignalTypeEnum.FIND_NODE.getValue().equals(type)) {
+			findNodeHandler(msg);
+		}else if(SignalTypeEnum.BROADCAST.getValue().equals(type)) {
+			broadcastHandler(msg);
+		}else {
+			throw new RuntimeException("未知Signal类型");
+		}
+		
 	}
 	
 	private void errorHandler(Signal signal) {
@@ -34,13 +52,18 @@ public class NettyBCHandler extends ChannelHandlerAdapter {
 	
 	private void queryHandler(Signal signal) {
 		
-	}
+	} 
 	
 	private void replyHandler(Signal signal) {
+		
+	}
+	
+	private void findNodeHandler(Signal signal) {
 		
 	}
 	
 	private void broadcastHandler(Signal signal) {
 		
 	}
+
 }

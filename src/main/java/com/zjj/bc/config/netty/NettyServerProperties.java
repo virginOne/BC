@@ -33,4 +33,6 @@ public class NettyServerProperties {
 	 * @Description:The size of work dealChain threads
 	 */
 	private int workSize=50;
+	
+	private String protocol= "TCP";
 }

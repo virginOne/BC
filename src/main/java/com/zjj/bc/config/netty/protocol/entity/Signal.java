@@ -17,7 +17,9 @@ import lombok.Data;
 public class Signal implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String type;
+	public static final int EXPIRATION=1000*60*10;
+	
+	private Integer type;
 	private long createDate;
 	InetAddress destination;
 	InetAddress source;

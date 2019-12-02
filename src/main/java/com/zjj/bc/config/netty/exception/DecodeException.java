@@ -9,5 +9,7 @@ package com.zjj.bc.config.netty.exception;
  *@Version 1.0
  */
 public class DecodeException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
 	
 }

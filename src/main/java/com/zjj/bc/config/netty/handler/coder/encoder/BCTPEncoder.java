@@ -18,7 +18,7 @@ public class BCTPEncoder extends MessageToByteEncoder<BCTP>{
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, BCTP msg, ByteBuf out) throws Exception {
-		out.writeByte(msg.HEAD_SIGN);
+		out.writeByte(BCTP.HEAD_SIGN);
 		out.writeByte(msg.getLength());
 		out.writeBytes(msg.getBytes());
 	}

@@ -10,7 +10,7 @@ package com.zjj.bc.config.netty.protocol.enums;
  */
 public enum SignalTypeEnum {
 	
-	ERROR(-1,"错误"),QUERY(0,"查询"),REPLY(1,"回复"),BROADCAST(100,"广播");
+	ERROR(-1,"错误"),QUERY(0,"查询"),REPLY(1,"回复"),FIND_NODE(2,"查找节点"),BROADCAST(100,"广播");
 	
 	private Integer value;
 	private String description;
